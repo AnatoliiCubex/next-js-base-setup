@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 import classNames from "classnames";
 import Head from "next/head";
 
@@ -9,7 +9,10 @@ import styles from "./Layout.module.scss";
 
 const siteTitle = "Tolistore";
 
-export const LayoutComponent: React.FC<PropsWithChildren> = ({ children }) => {
+export const LayoutComponent = React.forwardRef<
+  HTMLDivElement,
+  PropsWithChildren
+>(({ children }, ref) => {
   const layoutClassName = classNames(styles.layout, "container");
 
   return (
@@ -21,11 +24,11 @@ export const LayoutComponent: React.FC<PropsWithChildren> = ({ children }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <main>
+      <main ref={ref}>
         <Scrolling vertical>{children}</Scrolling>
       </main>
     </div>
   );
-};
+});
 
 LayoutComponent.displayName = "Layout";
