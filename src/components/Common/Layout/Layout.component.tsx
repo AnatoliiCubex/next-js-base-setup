@@ -13,7 +13,7 @@ export const LayoutComponent = React.forwardRef<
   HTMLDivElement,
   PropsWithChildren
 >(({ children }, ref) => {
-  const layoutClassName = classNames(styles.layout, "container");
+  const layoutClassName = classNames(styles.layout);
 
   return (
     <div className={layoutClassName}>
@@ -24,7 +24,7 @@ export const LayoutComponent = React.forwardRef<
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <main ref={ref}>
+      <main ref={ref} className='container'>
         <Scrolling vertical>{children}</Scrolling>
       </main>
     </div>
